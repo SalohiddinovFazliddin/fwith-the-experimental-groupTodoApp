@@ -18,7 +18,7 @@ class User
         string $full_name,
         string $email,
         string $password
-    ): bool
+    ): mixed
     {
         $select = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
         $select->bindParam(":email", $email);
@@ -43,7 +43,7 @@ class User
 
     public function login(string $email, string $password): bool|array
     {
-        $query = "SELECT * FROM user WHERE email = :email AND password = :password";
+        $query = "SELECT * FROM users WHERE email = :email AND password = :password";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([
             ':email' => $email,
@@ -57,7 +57,7 @@ class User
 
     public function getUserById(int $id): mixed
     {
-        $query = "SELECT * FROM user WHERE id = :id";
+        $query = "SELECT * FROM users WHERE id = :id";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([
             ':id' => $id,
