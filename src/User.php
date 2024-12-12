@@ -20,14 +20,14 @@ class User
         string $password
     ): mixed
     {
-        $select = $this->pdo->prepare("SELECT * FROM user WHERE email = :email");
+        $select = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
         $select->bindParam(":email", $email);
         $select->execute();
         if ($select->rowCount() > 0) {
             return false;
         }
 
-        $query = "INSERT INTO user(full_name, email, password)
+        $query = "INSERT INTO users(full_name, email, password)
               VALUES (:full_name, :email, :password)";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([
