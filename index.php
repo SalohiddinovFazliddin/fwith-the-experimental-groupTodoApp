@@ -44,9 +44,6 @@ $router->get('/todos/{id}/delete', fn($todoId)=>require 'controllers/deleteTodos
 
 $router->post('/todos/{id}/delete', fn($todoId)=>require 'controllers/deleteTodosController.php');
 
-
-
-
 ?>
 
 
