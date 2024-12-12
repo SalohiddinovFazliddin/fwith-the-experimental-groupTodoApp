@@ -10,11 +10,12 @@ class Todo
         $this->pdo = $db->conn;
 
     }
-    public function store (string $title, string $dueDate) {
-        $query = "INSERT INTO todos(title, status, due_date, created_at, updated_ad) VALUES (:title, 'pending', :due_date, NOW(), NOW())";
+    public function store (string $title, string $dueDate, int $userId) {
+        $query = "INSERT INTO todos(title, status, due_date, created_at, updated_ad, user_id) VALUES (:title, 'pending', :due_date, NOW(), NOW(), :user_id)";
         $this->pdo->prepare($query)->execute([
         ":title" => $title,
-        ":due_date" => $dueDate
+        ":due_date" => $dueDate,
+        ":user_id" => $userId
     ]);
 }
     public function update (int $id, string $title, string $status, string $dueDate) {
@@ -30,9 +31,12 @@ class Todo
     }
 
 
-public function getAllTodos () {
-        $query="SELECT*from todos";
-        $stmt = $this->pdo->query($query);
+public function getAllTodos (int $userId) {
+        $query="SELECT * from todos WHERE user_id = :user_id";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([
+            ":user_id" => $userId
+        ]);
         return $stmt->fetchAll();
 
 }

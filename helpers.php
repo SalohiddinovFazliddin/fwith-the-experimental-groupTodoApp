@@ -6,4 +6,5 @@ function view($page, $data = [])
 }
 function redirect(string $url){
     header("Location: $url");
+    exit();
 }

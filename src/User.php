@@ -64,5 +64,16 @@ class User
         ]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function DeleteAccount(string $email, string $password): mixed
+    {
+        $query = "DELETE FROM users WHERE email = :email AND password = :password";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([
+            ':email' => $email,
+            ':password' => $password,
+        ]);
+        return $stmt->rowCount() > 0;
+    }
 }
-?>
+
