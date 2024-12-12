@@ -56,5 +56,15 @@ public function getTodo (int $id){
     return $stmt->fetch();
 }
 
+    public function DeleteUserId(int $userId)
+    {
+        $query = "DELETE FROM todos WHERE user_id = :id";
+        $stmt = $this->pdo->prepare($query);
+        return $stmt->execute([
+            ":id" => $userId
+        ]);
+
+}
+
 
 }

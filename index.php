@@ -23,7 +23,7 @@ $router->post('/login',fn()=>require 'controllers/loginUsersController.php');
 
 $router->get('/DeleteAccount',fn()=>view('DeleteAccount'));
 
-$router->post('/DeleteAccount',fn()=> require 'controllers/deleteUserController.php');
+$router->post('/deleteAccount',fn()=> require 'controllers/deleteUserController.php');
 
 $router->get('/',fn()=>require 'controllers/homeController.php');
 
