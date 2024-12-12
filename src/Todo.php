@@ -11,7 +11,7 @@ class Todo
 
     }
     public function store (string $title, string $dueDate, int $userId) {
-        $query = "INSERT INTO todos(title, status, due_date, created_at, updated_ad, user_id) VALUES (:title, 'pending', :due_date, NOW(), NOW(), :user_id)";
+        $query = "INSERT INTO todos(title, status, due_date, created_at, updated_at, user_id) VALUES (:title, 'pending', :due_date, NOW(), NOW(), :user_id)";
         $this->pdo->prepare($query)->execute([
         ":title" => $title,
         ":due_date" => $dueDate,
